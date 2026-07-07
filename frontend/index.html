@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>DocuMind — Sign In</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" href="data:," />
+</head>
+<body class="auth-body">
+    <main class="auth-card">
+        <div class="brand">
+            <span class="brand-mark">◈</span>
+            <span class="brand-name">DocuMind</span>
+        </div>
+        <p class="auth-subtitle">Air-Gapped Document Intelligence</p>
+
+        <form id="login-form" autocomplete="on" novalidate>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="username" placeholder="you@example.com" />
+
+            <label for="password">Password</label>
+            <div class="password-field">
+                <input type="password" id="password" name="password" required
+                       autocomplete="current-password" placeholder="••••••••" />
+                <button type="button" id="toggle-password" class="toggle-password"
+                        aria-label="Show password">Show</button>
+            </div>
+
+            <div id="login-error" class="form-error" role="alert" hidden></div>
+
+            <button type="submit" id="login-btn" class="btn btn-primary btn-block">
+                <span class="btn-label">Sign In</span>
+                <span class="spinner" hidden></span>
+            </button>
+        </form>
+    </main>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        DocuMindAuth.initLoginPage();
+    </script>
+</body>
+</html>

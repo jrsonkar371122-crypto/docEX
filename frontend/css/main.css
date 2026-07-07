@@ -1,0 +1,245 @@
+/* ============================================================
+   DocuMind — shared styles: variables, reset, typography, buttons
+   All fonts are self-hosted (see /fonts/inter). Zero external calls.
+   ============================================================ */
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/inter/Inter-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/inter/Inter-Medium.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/inter/Inter-SemiBold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/inter/Inter-Bold.woff2") format("woff2");
+}
+
+:root {
+    --sidebar-bg: #1a1d23;
+    --sidebar-bg-hover: #242832;
+    --bg: #ffffff;
+    --bg-alt: #f6f8fa;
+    --border: #e2e6ea;
+    --text: #1a1d23;
+    --text-muted: #6b7280;
+    --text-invert: #f3f4f6;
+    --accent: #3d8ef8;
+    --accent-hover: #2f7de0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-weight: 600; margin: 0 0 0.5em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.muted { color: var(--text-muted); }
+
+/* ---- Buttons ---- */
+.btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+.btn-ghost { background: transparent; color: var(--text-invert); border-color: rgba(255,255,255,0.18); }
+.btn-ghost:hover:not(:disabled) { background: rgba(255,255,255,0.08); }
+.btn-danger { background: var(--error); color: #fff; }
+.btn-block { width: 100%; }
+.icon-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+}
+.icon-btn:hover { background: var(--bg-alt); }
+
+/* ---- Spinner ---- */
+.spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Brand ---- */
+.brand, .sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.brand-mark { color: var(--accent); font-size: 22px; }
+
+/* ---- Auth (login) page ---- */
+.auth-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #eef3fb 0%, #ffffff 60%);
+}
+.auth-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 36px 32px;
+    text-align: center;
+}
+.auth-card .brand { justify-content: center; font-size: 26px; }
+.auth-subtitle { color: var(--text-muted); margin: 6px 0 26px; font-size: 13px; }
+.auth-card form { text-align: left; }
+.auth-card label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 14px 0 6px;
+}
+.auth-card input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 14px;
+}
+.auth-card input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(61,142,248,0.15);
+}
+.password-field { position: relative; }
+.toggle-password {
+    position: absolute;
+    right: 8px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    color: var(--accent);
+    font-size: 12px; cursor: pointer;
+}
+.form-error {
+    background: #fdecec;
+    color: var(--error);
+    border: 1px solid #f7c9c9;
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    font-size: 13px;
+    margin-top: 14px;
+}
+#login-btn { margin-top: 20px; }
+
+/* ---- App layout (chat + admin) ---- */
+.app-body { overflow: hidden; }
+.layout { display: flex; height: 100vh; }
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--sidebar-bg);
+    color: var(--text-invert);
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 14px;
+}
+.sidebar-header { color: #fff; padding: 4px; }
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.user-info { padding: 4px; }
+.user-name { font-weight: 600; font-size: 14px; }
+.user-role { font-size: 12px; color: #9aa4b2; text-transform: capitalize; }
+.admin-link { color: var(--accent); font-size: 13px; padding: 4px; }
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg);
+}
+
+/* ---- Badges ---- */
+.badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.badge-queued { background: #eef2f7; color: #52616f; }
+.badge-processing, .badge-running { background: #e6f0fe; color: var(--accent); }
+.badge-ready, .badge-done { background: #e7f8ee; color: #15803d; }
+.badge-failed { background: #fdecec; color: var(--error); }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .sidebar { position: fixed; z-index: 40; height: 100%; transform: translateX(-100%); transition: transform 0.2s; }
+    .sidebar.open { transform: translateX(0); }
+    .layout { display: block; }
+    .main { height: 100vh; }
+}

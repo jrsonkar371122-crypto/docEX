@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>DocuMind — Admin</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="data:," />
+</head>
+<body class="app-body">
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="brand-mark">◈</span>
+                <span class="brand-name">DocuMind</span>
+            </div>
+            <nav class="admin-nav" id="admin-nav" aria-label="Admin sections">
+                <button class="admin-tab active" data-tab="upload">Upload</button>
+                <button class="admin-tab" data-tab="jobs">Jobs</button>
+                <button class="admin-tab" data-tab="documents">Documents</button>
+                <button class="admin-tab" data-tab="users">Users</button>
+                <button class="admin-tab" data-tab="feedback">Feedback</button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-name" id="user-name">—</div>
+                    <div class="user-role" id="user-role">admin</div>
+                </div>
+                <a href="/chat.html" class="admin-link">Back to Chat</a>
+                <button id="logout-btn" class="btn btn-ghost">Logout</button>
+            </div>
+        </aside>
+
+        <section class="main admin-main">
+            <!-- Upload -->
+            <div class="tab-panel active" id="panel-upload">
+                <h1>Upload Document</h1>
+                <div class="upload-zone" id="upload-zone">
+                    <p class="upload-hint">Drag &amp; drop a PDF here, or click to browse</p>
+                    <p class="upload-sub">PDF only · max 100 MB</p>
+                    <input type="file" id="file-input" accept="application/pdf" hidden />
+                </div>
+                <div id="upload-selected" class="upload-selected" hidden>
+                    <span id="upload-filename"></span>
+                    <span id="upload-filesize" class="muted"></span>
+                </div>
+                <div class="progress-wrap" id="upload-progress-wrap" hidden>
+                    <div class="progress-bar"><div class="progress-fill" id="upload-progress-fill"></div></div>
+                    <span id="upload-progress-label">0%</span>
+                </div>
+                <button id="upload-btn" class="btn btn-primary" disabled>Upload &amp; Ingest</button>
+                <div id="upload-result" class="form-note" hidden></div>
+            </div>
+
+            <!-- Jobs -->
+            <div class="tab-panel" id="panel-jobs">
+                <h1>Ingestion Jobs</h1>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Document</th><th>Status</th><th>Progress</th>
+                            <th>Started</th><th>Elapsed</th></tr>
+                    </thead>
+                    <tbody id="jobs-tbody"></tbody>
+                </table>
+            </div>
+
+            <!-- Documents -->
+            <div class="tab-panel" id="panel-documents">
+                <h1>Documents</h1>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Name</th><th>Pages</th><th>Chunks</th><th>Type</th>
+                            <th>Status</th><th>Uploaded By</th><th>Uploaded</th><th></th></tr>
+                    </thead>
+                    <tbody id="documents-tbody"></tbody>
+                </table>
+            </div>
+
+            <!-- Users -->
+            <div class="tab-panel" id="panel-users">
+                <div class="panel-head">
+                    <h1>Users</h1>
+                    <button id="create-user-btn" class="btn btn-primary">+ Create User</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Role</th><th>Active</th>
+                            <th>Last Login</th><th></th></tr>
+                    </thead>
+                    <tbody id="users-tbody"></tbody>
+                </table>
+            </div>
+
+            <!-- Feedback -->
+            <div class="tab-panel" id="panel-feedback">
+                <div class="panel-head">
+                    <h1>Feedback</h1>
+                    <div class="filters">
+                        <label>From <input type="date" id="fb-from" /></label>
+                        <label>To <input type="date" id="fb-to" /></label>
+                        <button id="fb-sort-rating" class="btn btn-ghost">Sort by rating</button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Message</th><th>Rating</th><th>Comment</th>
+                            <th>User</th><th>When</th></tr>
+                    </thead>
+                    <tbody id="feedback-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal host -->
+    <div class="modal-overlay" id="modal-overlay" hidden>
+        <div class="modal" id="modal"></div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/admin.js"></script>
+    <script>
+        DocuMindAdmin.init();
+    </script>
+</body>
+</html>

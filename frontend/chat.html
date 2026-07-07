@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>DocuMind — Chat</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/chat.css" />
+    <link rel="icon" href="data:," />
+</head>
+<body class="app-body">
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span class="brand-mark">◈</span>
+                <span class="brand-name">DocuMind</span>
+            </div>
+            <button id="new-chat-btn" class="btn btn-primary btn-block">+ New Chat</button>
+            <nav class="session-list" id="session-list" aria-label="Chat sessions"></nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-name" id="user-name">—</div>
+                    <div class="user-role" id="user-role">—</div>
+                </div>
+                <a href="/admin.html" id="admin-link" class="admin-link" hidden>Admin</a>
+                <button id="logout-btn" class="btn btn-ghost">Logout</button>
+            </div>
+        </aside>
+
+        <section class="main">
+            <header class="topbar">
+                <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar">☰</button>
+                <h1 class="session-title" id="session-title" title="Click to rename"
+                    contenteditable="false">New Chat</h1>
+                <span class="doc-count" id="doc-count">0 documents</span>
+            </header>
+
+            <div class="message-thread" id="message-thread">
+                <div class="empty-state" id="empty-state">
+                    <h2>Ask about your manuals</h2>
+                    <p>Every answer is grounded in your uploaded documents and cites its sources.</p>
+                </div>
+            </div>
+
+            <footer class="input-bar">
+                <textarea id="chat-input" rows="1" placeholder="Ask a question…"
+                          aria-label="Message"></textarea>
+                <button id="send-btn" class="btn btn-primary" aria-label="Send">Send</button>
+            </footer>
+        </section>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/feedback.js"></script>
+    <script src="/js/chat.js"></script>
+    <script>
+        DocuMindChat.init();
+    </script>
+</body>
+</html>
